@@ -1,0 +1,1865 @@
+[
+    {
+        "id": "c69beeb7ea133bc5",
+        "type": "tab",
+        "label": "AutomaticPetFeeder",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "22b77911d282dc1e",
+        "type": "ibmiot in",
+        "z": "c69beeb7ea133bc5",
+        "authentication": "apiKey",
+        "apiKey": "d8075a8d61dc9116",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "PFA110118rS111909i",
+        "applicationId": "",
+        "deviceType": "IoT_PetFeeder",
+        "eventType": "status",
+        "commandType": "",
+        "format": "json",
+        "name": "IBM IoT Levels",
+        "service": "registered",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": "",
+        "allLogicalInterfaces": "",
+        "allEvents": "",
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 140,
+        "y": 140,
+        "wires": [
+            [
+                "3e4bd8d52f5ed3b4",
+                "64cccef73615fb70"
+            ]
+        ]
+    },
+    {
+        "id": "3e4bd8d52f5ed3b4",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "Food Level",
+        "func": "global.set(\"foodlevel\", msg.payload.levels.food);\n\nmsg.payload = msg.payload.levels.food;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 100,
+        "wires": [
+            [
+                "061b5ab17754b23b",
+                "1a9307e87f892ed6"
+            ]
+        ]
+    },
+    {
+        "id": "64cccef73615fb70",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "Water Level",
+        "func": "global.set(\"waterlevel\", msg.payload.levels.water);\n\nmsg.payload = msg.payload.levels.water;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 180,
+        "wires": [
+            [
+                "c53ff9816ef0c30a",
+                "bc47fdf8c971614c"
+            ]
+        ]
+    },
+    {
+        "id": "061b5ab17754b23b",
+        "type": "ui_gauge",
+        "z": "c69beeb7ea133bc5",
+        "name": "Food Level Gauge",
+        "group": "bb477e2f68f84c42",
+        "order": 1,
+        "width": 11,
+        "height": 6,
+        "gtype": "wave",
+        "title": "Food Level",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 670,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "1a9307e87f892ed6",
+        "type": "ui_chart",
+        "z": "c69beeb7ea133bc5",
+        "name": "Food Level History",
+        "group": "bb477e2f68f84c42",
+        "order": 3,
+        "width": 11,
+        "height": 6,
+        "label": "Food Level History",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "No usage history ...",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "24",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 670,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c53ff9816ef0c30a",
+        "type": "ui_gauge",
+        "z": "c69beeb7ea133bc5",
+        "name": "Water Level Gauge",
+        "group": "bb477e2f68f84c42",
+        "order": 2,
+        "width": 11,
+        "height": 6,
+        "gtype": "wave",
+        "title": "Water Level",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 670,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "bc47fdf8c971614c",
+        "type": "ui_chart",
+        "z": "c69beeb7ea133bc5",
+        "name": "Water Level History",
+        "group": "bb477e2f68f84c42",
+        "order": 4,
+        "width": 11,
+        "height": 6,
+        "label": "Water Level History",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "No usage history ...",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "24",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 670,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "288a4710068b8910",
+        "type": "ui_button",
+        "z": "c69beeb7ea133bc5",
+        "name": "Dispense Button",
+        "group": "bb477e2f68f84c42",
+        "order": 6,
+        "width": 11,
+        "height": 1,
+        "passthru": false,
+        "label": "Dispense",
+        "tooltip": "Dispense food and water",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 140,
+        "y": 560,
+        "wires": [
+            [
+                "80878ba821e3537d"
+            ]
+        ]
+    },
+    {
+        "id": "99dc59570cdf1833",
+        "type": "ui_text_input",
+        "z": "c69beeb7ea133bc5",
+        "name": "Command Input",
+        "label": "Command",
+        "tooltip": "Send command to Pet Feeder",
+        "group": "bb477e2f68f84c42",
+        "order": 7,
+        "width": 11,
+        "height": 2,
+        "passthru": true,
+        "mode": "text",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": false,
+        "className": "",
+        "topicType": "msg",
+        "x": 140,
+        "y": 700,
+        "wires": [
+            [
+                "c0e097903c872088"
+            ]
+        ]
+    },
+    {
+        "id": "80878ba821e3537d",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "Dispense command",
+        "func": "msg.payload = {\n    \"action\": \"dispense\"\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 560,
+        "wires": [
+            [
+                "5d44903f26ff8dc1"
+            ]
+        ]
+    },
+    {
+        "id": "c0e097903c872088",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "Command command",
+        "func": "msg.payload = {\n    \"action\": \"command\",\n    \"command\": msg.payload\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 700,
+        "wires": [
+            [
+                "5d44903f26ff8dc1"
+            ]
+        ]
+    },
+    {
+        "id": "5d44903f26ff8dc1",
+        "type": "ibmiot out",
+        "z": "c69beeb7ea133bc5",
+        "authentication": "apiKey",
+        "apiKey": "d8075a8d61dc9116",
+        "outputType": "cmd",
+        "deviceId": "PFA110118rS111909i",
+        "deviceType": "IoT_PetFeeder",
+        "eventCommandType": "cmd",
+        "format": "json",
+        "data": "data",
+        "qos": 0,
+        "name": "IBM IoT Commands",
+        "service": "registered",
+        "x": 680,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "5bbed6ce32b67671",
+        "type": "ui_toast",
+        "z": "c69beeb7ea133bc5",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "Notification Message",
+        "x": 680,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "90cc9d801955b577",
+        "type": "ibmiot in",
+        "z": "c69beeb7ea133bc5",
+        "authentication": "apiKey",
+        "apiKey": "d8075a8d61dc9116",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "PFA110118rS111909i",
+        "applicationId": "",
+        "deviceType": "IoT_PetFeeder",
+        "eventType": "notification",
+        "commandType": "",
+        "format": "json",
+        "name": "IBM IoT Notifications",
+        "service": "registered",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": "",
+        "allLogicalInterfaces": "",
+        "allEvents": "",
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 130,
+        "y": 40,
+        "wires": [
+            [
+                "73dd1adcafc54f78"
+            ]
+        ]
+    },
+    {
+        "id": "73dd1adcafc54f78",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "Notifications",
+        "func": "msg.payload = msg.payload.alert;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 40,
+        "wires": [
+            [
+                "5bbed6ce32b67671"
+            ]
+        ]
+    },
+    {
+        "id": "fc9720a26e69737a",
+        "type": "ui_text_input",
+        "z": "c69beeb7ea133bc5",
+        "name": "Speech Input",
+        "label": "Speech",
+        "tooltip": "What to speak to your pet?",
+        "group": "bb477e2f68f84c42",
+        "order": 9,
+        "width": 22,
+        "height": 2,
+        "passthru": true,
+        "mode": "text",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": false,
+        "className": "",
+        "topicType": "msg",
+        "x": 150,
+        "y": 480,
+        "wires": [
+            [
+                "88324632c9679005"
+            ]
+        ]
+    },
+    {
+        "id": "88324632c9679005",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "Speak Command",
+        "func": "msg.payload = {\n    \"action\": \"speak\",\n    \"speech\": msg.payload\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 480,
+        "wires": [
+            [
+                "5d44903f26ff8dc1"
+            ]
+        ]
+    },
+    {
+        "id": "ea8ed3e469e5e11a",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "Upload Command",
+        "func": "msg.payload = {\n    \"action\": \"upload\"\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 280,
+        "wires": [
+            [
+                "5d44903f26ff8dc1"
+            ]
+        ]
+    },
+    {
+        "id": "eba86a47559b6e78",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "Update Command",
+        "func": "/*if (\n        msg.payload == '0'\n        || msg.payload == '1'\n        || msg.payload == '2'\n    ) {\n    msg.payload = {\n        \"action\": \"update\",\n        \"updatepart\": msg.payload\n    };\n} else {\n    msg.payload = {\n        \"action\": \"update\"\n    };\n}*/\nmsg.payload = {\n    \"action\": \"update\"\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 780,
+        "wires": [
+            [
+                "5d44903f26ff8dc1"
+            ]
+        ]
+    },
+    {
+        "id": "ef04d3ee67a94b1b",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "UploadConfig Command",
+        "func": "/*if (\n        msg.payload == '0'\n        || msg.payload == '1'\n        || msg.payload == '2'\n    ) {\n    msg.payload = {\n        \"action\": \"uploadconfig\",\n        \"uploadpart\": msg.payload\n    };\n} else {\n    msg.payload = {\n        \"action\": \"uploadconfig\"\n    };\n}*/\nmsg.payload = {\n    \"action\": \"uploadconfig\"\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 860,
+        "wires": [
+            [
+                "5d44903f26ff8dc1"
+            ]
+        ]
+    },
+    {
+        "id": "77ed11f2f7c22395",
+        "type": "inject",
+        "z": "c69beeb7ea133bc5",
+        "name": "Set Dispense Speech",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Tis good!",
+        "payloadType": "str",
+        "x": 120,
+        "y": 1520,
+        "wires": [
+            [
+                "2e6734f7d27e03b8"
+            ]
+        ]
+    },
+    {
+        "id": "2e6734f7d27e03b8",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "SetDispenseSpeech Command",
+        "func": "msg.payload = {\n    \"action\": \"setdispensespeech\",\n    \"speech\": msg.payload\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 1560,
+        "wires": [
+            [
+                "6e872613790d0554",
+                "5d44903f26ff8dc1"
+            ]
+        ]
+    },
+    {
+        "id": "174b3f094013cbf7",
+        "type": "ui_form",
+        "z": "c69beeb7ea133bc5",
+        "name": "Set Timer 1",
+        "label": "Timer 1",
+        "group": "359bf6f648c51802",
+        "order": 6,
+        "width": 12,
+        "height": 1,
+        "options": [
+            {
+                "label": "Hour (00-23)",
+                "value": "hour",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Minute (00-59)",
+                "value": "minute",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Enabled",
+                "value": "enabled",
+                "type": "switch",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "hour": "",
+            "minute": "",
+            "enabled": false
+        },
+        "payload": "",
+        "submit": "Update",
+        "cancel": "Cancel",
+        "topic": "1",
+        "topicType": "str",
+        "splitLayout": true,
+        "className": "",
+        "x": 150,
+        "y": 940,
+        "wires": [
+            [
+                "52d1d421ba30020e"
+            ]
+        ]
+    },
+    {
+        "id": "5ceff083c8462339",
+        "type": "ui_form",
+        "z": "c69beeb7ea133bc5",
+        "name": "Set Timer 2",
+        "label": "Timer 2",
+        "group": "359bf6f648c51802",
+        "order": 8,
+        "width": 12,
+        "height": 1,
+        "options": [
+            {
+                "label": "Hour (00-23)",
+                "value": "hour",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Minute (00-59)",
+                "value": "minute",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Enabled",
+                "value": "enabled",
+                "type": "switch",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "hour": "",
+            "minute": "",
+            "enabled": false
+        },
+        "payload": "",
+        "submit": "Update",
+        "cancel": "Cancel",
+        "topic": "2",
+        "topicType": "str",
+        "splitLayout": true,
+        "className": "",
+        "x": 150,
+        "y": 980,
+        "wires": [
+            [
+                "52d1d421ba30020e"
+            ]
+        ]
+    },
+    {
+        "id": "6d64376d737ab08a",
+        "type": "ui_form",
+        "z": "c69beeb7ea133bc5",
+        "name": "Set Timer 3",
+        "label": "Timer 3",
+        "group": "359bf6f648c51802",
+        "order": 10,
+        "width": 12,
+        "height": 1,
+        "options": [
+            {
+                "label": "Hour (00-23)",
+                "value": "hour",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Minute (00-59)",
+                "value": "minute",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Enabled",
+                "value": "enabled",
+                "type": "switch",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "hour": "",
+            "minute": "",
+            "enabled": false
+        },
+        "payload": "",
+        "submit": "Update",
+        "cancel": "Cancel",
+        "topic": "3",
+        "topicType": "str",
+        "splitLayout": true,
+        "className": "",
+        "x": 150,
+        "y": 1020,
+        "wires": [
+            [
+                "52d1d421ba30020e"
+            ]
+        ]
+    },
+    {
+        "id": "ad08cc47059ff765",
+        "type": "ui_form",
+        "z": "c69beeb7ea133bc5",
+        "name": "Set Timer 4",
+        "label": "Timer 4",
+        "group": "359bf6f648c51802",
+        "order": 12,
+        "width": 12,
+        "height": 1,
+        "options": [
+            {
+                "label": "Hour (00-23)",
+                "value": "hour",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Minute (00-59)",
+                "value": "minute",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Enabled",
+                "value": "enabled",
+                "type": "switch",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "hour": "",
+            "minute": "",
+            "enabled": false
+        },
+        "payload": "",
+        "submit": "Update",
+        "cancel": "Cancel",
+        "topic": "4",
+        "topicType": "str",
+        "splitLayout": true,
+        "className": "",
+        "x": 150,
+        "y": 1060,
+        "wires": [
+            [
+                "52d1d421ba30020e"
+            ]
+        ]
+    },
+    {
+        "id": "369a1f3ba629c74e",
+        "type": "ui_form",
+        "z": "c69beeb7ea133bc5",
+        "name": "Set Timer 5",
+        "label": "Timer 5",
+        "group": "359bf6f648c51802",
+        "order": 14,
+        "width": 12,
+        "height": 1,
+        "options": [
+            {
+                "label": "Hour (00-23)",
+                "value": "hour",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Minute (00-59)",
+                "value": "minute",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Enabled",
+                "value": "enabled",
+                "type": "switch",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "hour": "",
+            "minute": "",
+            "enabled": false
+        },
+        "payload": "",
+        "submit": "Update",
+        "cancel": "Cancel",
+        "topic": "5",
+        "topicType": "str",
+        "splitLayout": true,
+        "className": "",
+        "x": 150,
+        "y": 1100,
+        "wires": [
+            [
+                "52d1d421ba30020e"
+            ]
+        ]
+    },
+    {
+        "id": "52d1d421ba30020e",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "SetTimer Command",
+        "func": "msg.payload = {\n    \"action\": \"settimer\",\n    \"timer\": msg.topic,\n    \"hour\": msg.payload.hour,\n    \"minute\": msg.payload.minute,\n    \"enabled\": (msg.payload.enabled?1:0)\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1020,
+        "wires": [
+            [
+                "8d88c4883f64d457",
+                "5d44903f26ff8dc1"
+            ]
+        ]
+    },
+    {
+        "id": "d65a6b83ddc271e4",
+        "type": "ui_text",
+        "z": "c69beeb7ea133bc5",
+        "group": "359bf6f648c51802",
+        "order": 5,
+        "width": 12,
+        "height": 1,
+        "name": "Timer 1 Config",
+        "label": "Timer 1 Config",
+        "format": "Time: {{msg.payload.time}}, Enabled: {{msg.payload.enabled?\"Yes\":\"No\"}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 660,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "09a5047fd62ee86d",
+        "type": "cloudant in",
+        "z": "c69beeb7ea133bc5",
+        "name": "Cloudant Timer Config",
+        "cloudant": "efb14c2bed528a52",
+        "database": "pfa110118rs111909idb",
+        "service": "_ext_",
+        "search": "_id_",
+        "design": "",
+        "index": "",
+        "x": 420,
+        "y": 1200,
+        "wires": [
+            [
+                "860dc7a5bf4a1133",
+                "e62404ef16227622",
+                "f0765f047361bdab",
+                "fbf514b1a9677953",
+                "fcde9c9e31890995"
+            ]
+        ]
+    },
+    {
+        "id": "7091d731c7a41b71",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "Get Timer Config",
+        "func": "msg.payload = {\n    \"_id\": \"config:timers\"\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 1140,
+        "wires": [
+            [
+                "09a5047fd62ee86d"
+            ]
+        ]
+    },
+    {
+        "id": "8d88c4883f64d457",
+        "type": "delay",
+        "z": "c69beeb7ea133bc5",
+        "name": "Fetch Config Delay",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 1080,
+        "wires": [
+            [
+                "7091d731c7a41b71"
+            ]
+        ]
+    },
+    {
+        "id": "860dc7a5bf4a1133",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "Display Timer 1 Config",
+        "func": "global.set(\"timer1time\", msg.payload.timers['1'].time);\nglobal.set(\"timer1enabled\", msg.payload.timers['1'].active);\n\nmsg.payload = {\n    \"time\": msg.payload.timers['1'].time,\n    \"enabled\": msg.payload.timers['1'].active\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1260,
+        "wires": [
+            [
+                "d65a6b83ddc271e4"
+            ]
+        ]
+    },
+    {
+        "id": "e62404ef16227622",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "Display Timer 2 Config",
+        "func": "global.set(\"timer2time\", msg.payload.timers['2'].time);\nglobal.set(\"timer2enabled\", msg.payload.timers['2'].active);\n\nmsg.payload = {\n    \"time\": msg.payload.timers['2'].time,\n    \"enabled\": msg.payload.timers['2'].active\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1300,
+        "wires": [
+            [
+                "72bc4b5ab2f32f03"
+            ]
+        ]
+    },
+    {
+        "id": "f0765f047361bdab",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "Display Timer 3 Config",
+        "func": "global.set(\"timer3time\", msg.payload.timers['3'].time);\nglobal.set(\"timer3enabled\", msg.payload.timers['3'].active);\n\nmsg.payload = {\n    \"time\": msg.payload.timers['3'].time,\n    \"enabled\": msg.payload.timers['3'].active\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1340,
+        "wires": [
+            [
+                "8aff7ff04df60cac"
+            ]
+        ]
+    },
+    {
+        "id": "fbf514b1a9677953",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "Display Timer 4 Config",
+        "func": "global.set(\"timer4time\", msg.payload.timers['4'].time);\nglobal.set(\"timer4enabled\", msg.payload.timers['4'].active);\n\nmsg.payload = {\n    \"time\": msg.payload.timers['4'].time,\n    \"enabled\": msg.payload.timers['4'].active\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1380,
+        "wires": [
+            [
+                "11703c5e056abc56"
+            ]
+        ]
+    },
+    {
+        "id": "fcde9c9e31890995",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "Display Timer 5 Config",
+        "func": "global.set(\"timer5time\", msg.payload.timers['5'].time);\nglobal.set(\"timer5enabled\", msg.payload.timers['5'].active);\n\nmsg.payload = {\n    \"time\": msg.payload.timers['5'].time,\n    \"enabled\": msg.payload.timers['5'].active\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1420,
+        "wires": [
+            [
+                "897fb5a8c3811792"
+            ]
+        ]
+    },
+    {
+        "id": "72bc4b5ab2f32f03",
+        "type": "ui_text",
+        "z": "c69beeb7ea133bc5",
+        "group": "359bf6f648c51802",
+        "order": 7,
+        "width": 12,
+        "height": 1,
+        "name": "Timer 2 Config",
+        "label": "Timer 2 Config",
+        "format": "Time: {{msg.payload.time}}, Enabled: {{msg.payload.enabled?\"Yes\":\"No\"}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 660,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "8aff7ff04df60cac",
+        "type": "ui_text",
+        "z": "c69beeb7ea133bc5",
+        "group": "359bf6f648c51802",
+        "order": 9,
+        "width": 12,
+        "height": 1,
+        "name": "Timer 3 Config",
+        "label": "Timer 3 Config",
+        "format": "Time: {{msg.payload.time}}, Enabled: {{msg.payload.enabled?\"Yes\":\"No\"}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 660,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "11703c5e056abc56",
+        "type": "ui_text",
+        "z": "c69beeb7ea133bc5",
+        "group": "359bf6f648c51802",
+        "order": 11,
+        "width": 12,
+        "height": 1,
+        "name": "Timer 4 Config",
+        "label": "Timer 4 Config",
+        "format": "Time: {{msg.payload.time}}, Enabled: {{msg.payload.enabled?\"Yes\":\"No\"}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 660,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "897fb5a8c3811792",
+        "type": "ui_text",
+        "z": "c69beeb7ea133bc5",
+        "group": "359bf6f648c51802",
+        "order": 13,
+        "width": 12,
+        "height": 1,
+        "name": "Timer 5 Config",
+        "label": "Timer 5 Config",
+        "format": "Time: {{msg.payload.time}}, Enabled: {{msg.payload.enabled?\"Yes\":\"No\"}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 660,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "f188568537bdac12",
+        "type": "ui_text_input",
+        "z": "c69beeb7ea133bc5",
+        "name": "Dispense Speech Input",
+        "label": "Dispense Speech",
+        "tooltip": "Set speech to be played while dispensing",
+        "group": "359bf6f648c51802",
+        "order": 4,
+        "width": 12,
+        "height": 1,
+        "passthru": false,
+        "mode": "text",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": false,
+        "className": "",
+        "topicType": "msg",
+        "x": 110,
+        "y": 1560,
+        "wires": [
+            [
+                "2e6734f7d27e03b8"
+            ]
+        ]
+    },
+    {
+        "id": "6e872613790d0554",
+        "type": "delay",
+        "z": "c69beeb7ea133bc5",
+        "name": "Fetch Config Delay",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 1620,
+        "wires": [
+            [
+                "4c1ed6f602346d7b"
+            ]
+        ]
+    },
+    {
+        "id": "4c1ed6f602346d7b",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "Get Speech Config",
+        "func": "msg.payload = {\n    \"_id\": \"config:speech\"\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 1680,
+        "wires": [
+            [
+                "3dcee0598906bbb2"
+            ]
+        ]
+    },
+    {
+        "id": "3dcee0598906bbb2",
+        "type": "cloudant in",
+        "z": "c69beeb7ea133bc5",
+        "name": "Cloudant Speech Config",
+        "cloudant": "efb14c2bed528a52",
+        "database": "pfa110118rs111909idb",
+        "service": "_ext_",
+        "search": "_id_",
+        "design": "",
+        "index": "",
+        "x": 430,
+        "y": 1740,
+        "wires": [
+            [
+                "ec76e08e18760334"
+            ]
+        ]
+    },
+    {
+        "id": "ec76e08e18760334",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "Display Speech Config",
+        "func": "global.set(\"speech\", msg.payload.speech);\n\nmsg.payload = msg.payload.speech;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1800,
+        "wires": [
+            [
+                "63bdb75161ca5006"
+            ]
+        ]
+    },
+    {
+        "id": "63bdb75161ca5006",
+        "type": "ui_text",
+        "z": "c69beeb7ea133bc5",
+        "group": "359bf6f648c51802",
+        "order": 3,
+        "width": 12,
+        "height": 1,
+        "name": "Dispense Speech Config",
+        "label": "Current Dispense Speech",
+        "format": "\"{{msg.payload}}\"",
+        "layout": "row-spread",
+        "className": "",
+        "x": 690,
+        "y": 1800,
+        "wires": []
+    },
+    {
+        "id": "bb765751e13c206b",
+        "type": "ui_button",
+        "z": "c69beeb7ea133bc5",
+        "name": "Update Button",
+        "group": "359bf6f648c51802",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Update IoT",
+        "tooltip": "Update IoT Device to latest config",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 140,
+        "y": 780,
+        "wires": [
+            [
+                "eba86a47559b6e78"
+            ]
+        ]
+    },
+    {
+        "id": "b09878b63dcf0282",
+        "type": "ui_button",
+        "z": "c69beeb7ea133bc5",
+        "name": "Upload Config Button",
+        "group": "359bf6f648c51802",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Upload IoT Config",
+        "tooltip": "Upload IoT Device config to cloud",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 860,
+        "wires": [
+            [
+                "ef04d3ee67a94b1b"
+            ]
+        ]
+    },
+    {
+        "id": "e7651004d9166385",
+        "type": "ui_button",
+        "z": "c69beeb7ea133bc5",
+        "name": "Upload Levels Button",
+        "group": "bb477e2f68f84c42",
+        "order": 5,
+        "width": 22,
+        "height": 1,
+        "passthru": false,
+        "label": "Refresh Levels",
+        "tooltip": "Refresh food and water levels",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 280,
+        "wires": [
+            [
+                "ea8ed3e469e5e11a"
+            ]
+        ]
+    },
+    {
+        "id": "a78798bf8e28b45b",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "HTTP GET Levels",
+        "func": "msg.payload = {\n    \"food\": global.get(\"foodlevel\"),\n    \"water\": global.get(\"waterlevel\")\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 1840,
+        "wires": [
+            [
+                "5d88f18f90126957"
+            ]
+        ]
+    },
+    {
+        "id": "fa72c6c16f3f1b79",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "HTTP GET Settings",
+        "func": "msg.payload = {\n    \"speech\": global.get(\"speech\"),\n    \"timer1time\": global.get(\"timer1time\"),\n    \"timer1enabled\": global.get(\"timer1enabled\"),\n    \"timer2time\": global.get(\"timer2time\"),\n    \"timer2enabled\": global.get(\"timer2enabled\"),\n    \"timer3time\": global.get(\"timer3time\"),\n    \"timer3enabled\": global.get(\"timer3enabled\"),\n    \"timer4time\": global.get(\"timer4time\"),\n    \"timer4enabled\": global.get(\"timer4enabled\"),\n    \"timer5time\": global.get(\"timer5time\"),\n    \"timer5enabled\": global.get(\"timer5enabled\")\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 1880,
+        "wires": [
+            [
+                "5cf18b838e143157"
+            ]
+        ]
+    },
+    {
+        "id": "f3e17adafce636be",
+        "type": "http in",
+        "z": "c69beeb7ea133bc5",
+        "name": "Get Levels",
+        "url": "/getlevels",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 1840,
+        "wires": [
+            [
+                "a78798bf8e28b45b"
+            ]
+        ]
+    },
+    {
+        "id": "e61b836a8f096e29",
+        "type": "http in",
+        "z": "c69beeb7ea133bc5",
+        "name": "Get Settings",
+        "url": "/getsettings",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 1880,
+        "wires": [
+            [
+                "fa72c6c16f3f1b79"
+            ]
+        ]
+    },
+    {
+        "id": "5d88f18f90126957",
+        "type": "http response",
+        "z": "c69beeb7ea133bc5",
+        "name": "Get Levels Response",
+        "statusCode": "",
+        "headers": {},
+        "x": 680,
+        "y": 1840,
+        "wires": []
+    },
+    {
+        "id": "5cf18b838e143157",
+        "type": "http response",
+        "z": "c69beeb7ea133bc5",
+        "name": "Get Settings Response",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 1880,
+        "wires": []
+    },
+    {
+        "id": "f7543c2bf6785146",
+        "type": "http in",
+        "z": "c69beeb7ea133bc5",
+        "name": "Refresh Levels",
+        "url": "/refreshlevels",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 240,
+        "wires": [
+            [
+                "ea8ed3e469e5e11a",
+                "3483199eb32aaab4"
+            ]
+        ]
+    },
+    {
+        "id": "1f5034a5fadb31ba",
+        "type": "http in",
+        "z": "c69beeb7ea133bc5",
+        "name": "Dispense",
+        "url": "/dispense",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 520,
+        "wires": [
+            [
+                "80878ba821e3537d",
+                "02a95ff50c1efdeb"
+            ]
+        ]
+    },
+    {
+        "id": "20b3a3e5f1ea2dc9",
+        "type": "http in",
+        "z": "c69beeb7ea133bc5",
+        "name": "Speak",
+        "url": "/speak",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 320,
+        "wires": [
+            [
+                "5fa3bee5cfa1f57c",
+                "261dc981b88909d0"
+            ]
+        ]
+    },
+    {
+        "id": "5fa3bee5cfa1f57c",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "HTTP GET Speak",
+        "func": "msg.payload = msg.payload.speech;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 360,
+        "wires": [
+            [
+                "88324632c9679005"
+            ]
+        ]
+    },
+    {
+        "id": "261dc981b88909d0",
+        "type": "http response",
+        "z": "c69beeb7ea133bc5",
+        "name": "Get Speak Response",
+        "statusCode": "",
+        "headers": {},
+        "x": 680,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "02a95ff50c1efdeb",
+        "type": "http response",
+        "z": "c69beeb7ea133bc5",
+        "name": "Get Dispense Response",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "0648342b707502d3",
+        "type": "http in",
+        "z": "c69beeb7ea133bc5",
+        "name": "Command",
+        "url": "/command",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 600,
+        "wires": [
+            [
+                "5d6a8c0c0cf20a45",
+                "3fc58c30cdbbc0fc"
+            ]
+        ]
+    },
+    {
+        "id": "3fc58c30cdbbc0fc",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "HTTP GET Command",
+        "func": "msg.payload = msg.payload.command;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 640,
+        "wires": [
+            [
+                "c0e097903c872088"
+            ]
+        ]
+    },
+    {
+        "id": "5d6a8c0c0cf20a45",
+        "type": "http response",
+        "z": "c69beeb7ea133bc5",
+        "name": "Get Command Response",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "48c8c80684ba86bd",
+        "type": "http in",
+        "z": "c69beeb7ea133bc5",
+        "name": "Update IoT",
+        "url": "/updateiot",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 740,
+        "wires": [
+            [
+                "bf0bb7470a41fbd7",
+                "eba86a47559b6e78"
+            ]
+        ]
+    },
+    {
+        "id": "bf0bb7470a41fbd7",
+        "type": "http response",
+        "z": "c69beeb7ea133bc5",
+        "name": "Get Update IoT Response",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "87c9094e4c0bb8eb",
+        "type": "http in",
+        "z": "c69beeb7ea133bc5",
+        "name": "Upload Config",
+        "url": "/uploadconfig",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 820,
+        "wires": [
+            [
+                "e3999be56ab1378d",
+                "ef04d3ee67a94b1b"
+            ]
+        ]
+    },
+    {
+        "id": "e3999be56ab1378d",
+        "type": "http response",
+        "z": "c69beeb7ea133bc5",
+        "name": "Get Upload Config Response",
+        "statusCode": "",
+        "headers": {},
+        "x": 700,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "f39b8e8003039268",
+        "type": "http in",
+        "z": "c69beeb7ea133bc5",
+        "name": "Set Timer",
+        "url": "/settimer",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 900,
+        "wires": [
+            [
+                "9ad5968d84620c5d",
+                "d880d940b3347dee"
+            ]
+        ]
+    },
+    {
+        "id": "9ad5968d84620c5d",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "HTTP GET Set Timer",
+        "func": "msg.payload = {\n    \"action\": \"settimer\",\n    \"timer\": msg.payload.timer,\n    \"hour\": msg.payload.hour,\n    \"minute\": msg.payload.minute,\n    \"enabled\": msg.payload.enabled\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 940,
+        "wires": [
+            [
+                "5d44903f26ff8dc1",
+                "8d88c4883f64d457"
+            ]
+        ]
+    },
+    {
+        "id": "d880d940b3347dee",
+        "type": "http response",
+        "z": "c69beeb7ea133bc5",
+        "name": "Get Set Timer Response",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "1406c68ca42c2863",
+        "type": "http in",
+        "z": "c69beeb7ea133bc5",
+        "name": "Set Dispense Speech",
+        "url": "/setdispensespeech",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 1460,
+        "wires": [
+            [
+                "ca8598d039707fec",
+                "fc8e79e8b9f5f148"
+            ]
+        ]
+    },
+    {
+        "id": "ca8598d039707fec",
+        "type": "function",
+        "z": "c69beeb7ea133bc5",
+        "name": "HTTP GET Set Dispense Speech",
+        "func": "msg.payload = msg.payload.speech;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 1500,
+        "wires": [
+            [
+                "2e6734f7d27e03b8"
+            ]
+        ]
+    },
+    {
+        "id": "fc8e79e8b9f5f148",
+        "type": "http response",
+        "z": "c69beeb7ea133bc5",
+        "name": "Get SetDispenseSpeech Response",
+        "statusCode": "",
+        "headers": {},
+        "x": 720,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "da5339bf0eb36dfc",
+        "type": "inject",
+        "z": "c69beeb7ea133bc5",
+        "name": "Initial Speech Update",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "str",
+        "x": 120,
+        "y": 1680,
+        "wires": [
+            [
+                "4c1ed6f602346d7b"
+            ]
+        ]
+    },
+    {
+        "id": "af29bb81a7b06d08",
+        "type": "inject",
+        "z": "c69beeb7ea133bc5",
+        "name": "Initial Timer Update",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "str",
+        "x": 130,
+        "y": 1140,
+        "wires": [
+            [
+                "7091d731c7a41b71"
+            ]
+        ]
+    },
+    {
+        "id": "3483199eb32aaab4",
+        "type": "http response",
+        "z": "c69beeb7ea133bc5",
+        "name": "Get Refresh Response",
+        "statusCode": "",
+        "headers": {},
+        "x": 680,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "2dbc4ac58d6f8efc",
+        "type": "ui_microphone",
+        "z": "c69beeb7ea133bc5",
+        "name": "Speech Mic Input",
+        "group": "bb477e2f68f84c42",
+        "order": 8,
+        "width": 11,
+        "height": 1,
+        "maxLength": 5,
+        "maxRecogLength": 5,
+        "timeslice": 0,
+        "press": "click",
+        "mode": "audio",
+        "interimResults": false,
+        "x": 140,
+        "y": 420,
+        "wires": [
+            [
+                "45d9546acc67d9b9"
+            ]
+        ]
+    },
+    {
+        "id": "45d9546acc67d9b9",
+        "type": "watson-speech-to-text",
+        "z": "c69beeb7ea133bc5",
+        "name": "Speak Speech-to-text",
+        "alternatives": 1,
+        "speakerlabels": true,
+        "smartformatting": false,
+        "lang": "en-GB",
+        "langhidden": "en-GB",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "custom-weight": "0.5",
+        "band": "BroadbandModel",
+        "bandhidden": "",
+        "keywords": "",
+        "keywords-threshold": "0.5",
+        "word-confidence": false,
+        "password": "",
+        "apikey": "x0hwnlQAcqAjNxgLBCPRb-KLFOOOoOJrAA8MfiO01W03",
+        "payload-response": true,
+        "streaming-mode": false,
+        "streaming-mute": true,
+        "auto-connect": false,
+        "discard-listening": false,
+        "disable-precheck": false,
+        "service-endpoint": "https://api.eu-gb.speech-to-text.watson.cloud.ibm.com/instances/34bd5c29-0d85-45f9-a72e-bf5d5e17b4a9",
+        "x": 420,
+        "y": 420,
+        "wires": [
+            [
+                "88324632c9679005"
+            ]
+        ]
+    },
+    {
+        "id": "d8075a8d61dc9116",
+        "type": "ibmiot",
+        "name": "IBM IoT API",
+        "keepalive": "60",
+        "serverName": "",
+        "cleansession": true,
+        "appId": "",
+        "shared": false
+    },
+    {
+        "id": "bb477e2f68f84c42",
+        "type": "ui_group",
+        "name": "Dashboard",
+        "tab": "0c299d495a91c22c",
+        "order": 1,
+        "disp": true,
+        "width": 22,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "359bf6f648c51802",
+        "type": "ui_group",
+        "name": "Settings",
+        "tab": "0c299d495a91c22c",
+        "order": 2,
+        "disp": true,
+        "width": 12,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "efb14c2bed528a52",
+        "type": "cloudant",
+        "host": "https://apikey-v2-30cu3aik2oj2cw2mz8a030wna4fptgs9wpmgwsefxwa5:a4dcc4dba07cb678976d9ba42e7e23d1@813c7846-0248-4408-9017-f9e415556d98-bluemix.cloudantnosqldb.appdomain.cloud",
+        "name": "CloudantCred1"
+    },
+    {
+        "id": "0c299d495a91c22c",
+        "type": "ui_tab",
+        "name": "FinalProject",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
